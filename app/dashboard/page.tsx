@@ -2,6 +2,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { verifyToken } from "@/lib/auth";
+import DonorDirectory from "@/app/components/DonorDirectory";
 
 export default async function DashboardPage() {
   const token = (await cookies()).get("token")?.value;
@@ -36,6 +37,12 @@ export default async function DashboardPage() {
               className="rounded-3xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
             >
               Sign out
+            </Link>
+            <Link
+              href="/profile"
+              className="rounded-3xl border border-red-500 bg-transparent px-5 py-3 text-sm font-semibold text-red-200 transition hover:border-red-300 hover:bg-red-500/10"
+            >
+              Edit profile
             </Link>
             <Link
               href="/admin-dashboard"
@@ -88,6 +95,8 @@ export default async function DashboardPage() {
             </div>
           </section>
         </main>
+
+        <DonorDirectory />
       </div>
     </div>
   );

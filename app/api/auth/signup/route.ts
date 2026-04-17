@@ -11,9 +11,12 @@ export async function POST(request: Request) {
     const password = String(body.password || "");
     const role = String(body.role || "donor").toLowerCase();
     const bloodGroup = body.bloodGroup ? String(body.bloodGroup) : null;
+    const division = body.division ? String(body.division) : null;
+    const mobile = body.mobile ? String(body.mobile) : null;
+    const address = body.address ? String(body.address).trim() : null;
 
-    if (!fullName || !email || !password) {
-      return NextResponse.json({ error: "Please provide a name, email, and password." }, { status: 400 });
+    if (!fullName || !email || !password || !mobile || !division || !address) {
+      return NextResponse.json({ error: "Please provide a name, email, password, mobile number, address, and division." }, { status: 400 });
     }
 
     const normalizedRole = ["donor", "recipient", "admin"].includes(role) ? role : "donor";
@@ -32,6 +35,10 @@ export async function POST(request: Request) {
       password: hashedPassword,
       role: normalizedRole,
       bloodGroup,
+      division,
+      mobile,
+      address,
+      lastDonationDate: null,
       createdAt: new Date(),
     };
 

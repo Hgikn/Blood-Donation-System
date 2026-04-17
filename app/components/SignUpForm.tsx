@@ -10,6 +10,9 @@ export default function SignUpForm() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('donor');
   const [bloodGroup, setBloodGroup] = useState('');
+  const [division, setDivision] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [address, setAddress] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -24,7 +27,16 @@ export default function SignUpForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin',
-        body: JSON.stringify({ fullName, email, password, role, bloodGroup }),
+        body: JSON.stringify({
+          fullName,
+          email,
+          password,
+          role,
+          bloodGroup,
+          division,
+          mobile,
+          address,
+        }),
       });
 
       const result = await response.json();
@@ -152,6 +164,59 @@ export default function SignUpForm() {
               <option value="O+">O+</option>
               <option value="O-">O-</option>
             </select>
+          </div>
+
+          <div>
+            <label htmlFor="division" className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+              Division
+            </label>
+            <select
+              id="division"
+              value={division}
+              onChange={(e) => setDivision(e.target.value)}
+              required
+              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:focus:border-red-500 dark:focus:ring-red-600/20"
+            >
+              <option value="">Select your division</option>
+              <option value="Dhaka">Dhaka</option>
+              <option value="Chattogram">Chattogram</option>
+              <option value="Rajshahi">Rajshahi</option>
+              <option value="Khulna">Khulna</option>
+              <option value="Barisal">Barisal</option>
+              <option value="Sylhet">Sylhet</option>
+              <option value="Rangpur">Rangpur</option>
+              <option value="Mymensingh">Mymensingh</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="mobile" className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+              Mobile number
+            </label>
+            <input
+              id="mobile"
+              type="tel"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              placeholder="01XXXXXXXXX"
+              required
+              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:focus:border-red-500 dark:focus:ring-red-600/20"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="address" className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">
+              Address
+            </label>
+            <input
+              id="address"
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Street, neighborhood or city"
+              required
+              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:focus:border-red-500 dark:focus:ring-red-600/20"
+            />
           </div>
 
           <button
