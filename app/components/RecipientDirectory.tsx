@@ -17,7 +17,7 @@ type Person = {
 const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 const divisions = ['Dhaka', 'Chattogram', 'Rajshahi', 'Khulna', 'Barisal', 'Sylhet', 'Rangpur', 'Mymensingh'];
 
-export default function DonorDirectory() {
+export default function RecipientDirectory() {
   const [donors, setDonors] = useState<Person[]>([]);
   const [bloodGroup, setBloodGroup] = useState('');
   const [division, setDivision] = useState('');
@@ -30,7 +30,7 @@ export default function DonorDirectory() {
     if (division) active.push(division);
     if (bloodGroup) active.push(bloodGroup);
     if (search) active.push(`search: ${search}`);
-    return active.length ? active.join(' · ') : 'All donors';
+    return active.length ? active.join(' · ') : 'All recipients';
   }, [bloodGroup, division, search]);
 
   async function loadDonors() {
@@ -39,7 +39,7 @@ export default function DonorDirectory() {
 
     try {
       const params = new URLSearchParams();
-      params.set('role', 'donor');
+      params.set('role', 'recipient');
       if (bloodGroup) params.set('bloodGroup', bloodGroup);
       if (division) params.set('division', division);
       if (search) params.set('search', search.trim());
@@ -130,17 +130,17 @@ export default function DonorDirectory() {
 
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-sm text-red-100/80">
         <p>{filterLabel}</p>
-        <p>{donors.length} donor{donors.length === 1 ? '' : 's'}</p>
+        <p>{donors.length} recipient{donors.length === 1 ? '' : 's'}</p>
       </div>
 
       {isLoading ? (
-        <div className="mt-8 text-sm text-red-100/80">Loading donors…</div>
+        <div className="mt-8 text-sm text-red-100/80">Loading recipients…</div>
       ) : error ? (
         <div className="mt-8 rounded-2xl border border-red-400 bg-red-950/50 px-4 py-3 text-sm text-red-100">
           {error}
         </div>
       ) : donors.length === 0 ? (
-        <p className="mt-8 text-sm text-red-100/80">No donors match the selected filters.</p>
+        <p className="mt-8 text-sm text-red-100/80">No recipients match the selected filters.</p>
       ) : (
         <div className="mt-6 overflow-x-auto">
           <table className="min-w-full divide-y divide-white/10 text-left text-sm">

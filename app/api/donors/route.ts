@@ -19,8 +19,9 @@ export async function GET(request: Request) {
   const bloodGroup = url.searchParams.get('bloodGroup') || undefined;
   const division = url.searchParams.get('division') || undefined;
   const search = url.searchParams.get('search')?.trim() || undefined;
+  const role = url.searchParams.get('role') || 'donor';
 
-  const filter: Record<string, unknown> = { role: 'donor' };
+  const filter: Record<string, unknown> = { role };
   if (bloodGroup) {
     filter.bloodGroup = bloodGroup;
   }
@@ -42,6 +43,7 @@ export async function GET(request: Request) {
     id: donor._id.toString(),
     fullName: donor.fullName,
     email: donor.email,
+    role: donor.role,
     bloodGroup: donor.bloodGroup ?? null,
     division: donor.division ?? null,
     mobile: donor.mobile ?? null,

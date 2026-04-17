@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { verifyToken } from "@/lib/auth";
 import DonorDirectory from "@/app/components/DonorDirectory";
+import RecipientDirectory from "@/app/components/RecipientDirectory";
 
 export default async function DashboardPage() {
   const token = (await cookies()).get("token")?.value;
@@ -96,7 +97,15 @@ export default async function DashboardPage() {
           </section>
         </main>
 
-        <DonorDirectory />
+        <section className="mt-8">
+          <h2 className="text-3xl font-bold text-white mb-6">Donor Directory</h2>
+          <DonorDirectory />
+        </section>
+
+        <section className="mt-8">
+          <h2 className="text-3xl font-bold text-white mb-6">Recipient Directory</h2>
+          <RecipientDirectory />
+        </section>
       </div>
     </div>
   );
