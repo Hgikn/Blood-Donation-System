@@ -38,7 +38,7 @@ export default async function DashboardPage() {
               <span className="text-xl">🩸</span>
             </div>
             <div>
-              <p className="text-sm uppercase tracking-[0.35em] text-red-300">BloodHive</p>
+              <p className="text-sm uppercase tracking-[0.35em] text-red-300">LIFE SAVERS</p>
               <p className="text-base font-semibold text-white/90">Donate & save lives</p>
             </div>
           </div>
