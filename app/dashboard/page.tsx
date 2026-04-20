@@ -70,7 +70,7 @@ export default async function DashboardPage() {
               urgent care for donors & recipients
             </div>
             <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-6xl">
-              Donate Blood <span className="text-amber-300">Save Lives Today</span>
+              DONATE BLOOD <span className="text-amber-300">SAVE LIVES</span>
             </h1>
             <p className="max-w-3xl text-lg leading-8 text-slate-300">
               Your one donation can save multiple lives. Join our mission and help patients in need across Bangladesh.
