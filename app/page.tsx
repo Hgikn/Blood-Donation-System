@@ -3,6 +3,7 @@
 import { useState } from "react";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
+import EmergencyPostings from "./components/EmergencyPostings";
 
 export default function Home() {
   const [isLogin, setIsLogin] = useState(true);
@@ -21,7 +22,9 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="flex flex-1 items-center justify-center">
+        <EmergencyPostings />
+
+        <section className="flex flex-1 items-center justify-center mt-12">
           <div className="w-full rounded-[2rem] border border-white/10 bg-white/10 p-8 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-10">
             <div className="mb-8 text-center">
               <div className="flex justify-center space-x-4 mb-6">
